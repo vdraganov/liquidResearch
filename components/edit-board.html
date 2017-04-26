@@ -1,0 +1,161 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<dom-module id="edit-board">
+  <style>
+    :host {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100vw;
+        top: var(--parent-btm-coord, 250px);
+        margin: 1px 0;
+        /*display: flex;
+        flex-direction: row;
+        align-items: center;*/
+        background-color: rgb(72, 194, 124);
+        font-size: 2rem;
+    }
+
+    :host button.closeBtn {
+        display: none;
+        padding: 25px;
+        margin: 15px;
+        /*height: 25%;*/
+        font-size: 2.4rem;
+        float: right;
+    }
+
+    :host.elementAnimationDrop {
+        animation: animationDropFrames ease 1s;
+        animation-iteration-count: 1;
+        transform-origin: 50% 50%;
+        animation-fill-mode:forwards; /*when the spec is finished*/
+    }
+
+    @keyframes animationDropFrames{
+        0% {
+            opacity:0;
+            transform: translate(0px, 100vh);
+            transform:scaleY(0.1);
+        }
+
+        80% {
+            opacity:1;
+            transform:scaleY(2);
+            transform: translate(0px, -200px);
+        }
+        100% {
+            opacity:1;
+            transform:scaleY(1);
+            transform: translate(0px, 0px);
+        }
+    }
+
+    :host.elementAnimation {
+        animation: animationFrames ease 2s;
+        animation-iteration-count: 1;
+        transform-origin: 50% 50%;
+        animation-fill-mode:forwards; /*when the spec is finished*/
+    }
+
+    @keyframes animationFrames{
+        0% {
+            opacity:0;
+            bottom: 0;
+            transform: translate(0px, 100vh);
+        }
+
+        50% {
+            opacity:1;
+            height: calc(var(--scaled-height) + 250px);
+            transform: translate(0px, -200px);
+        }
+        100% {
+            opacity:1;
+            bottom: 0;
+            height: var(--scaled-height, 400px);
+            transform: translate(0px, 0px);
+        }
+    }
+
+    #animationBack.elementAnimationBack {
+        height: 10px;
+        background-color: rgb(72, 0, 0);
+        animation: animationFramesBack ease 2s;
+        animation-iteration-count: 1;
+        transform-origin: 50% 50%;
+        /*animation-fill-mode:forwards; /*when the spec is finished*/*/
+    }
+
+    @keyframes animationFramesBack{
+        0% {
+            height: 100px;
+            /*opacity:0;
+            bottom: 0;
+            height: 0px;
+            transform: translate(0px, 100vh);*/
+        }
+
+        50% {
+            background-color: rgb(72, 0, 120);
+            transform: translate(0px, 0px);
+            height: 20px;
+        }
+        80% {
+            opacity: 1;
+            z-index: 1;
+            height: 250px;
+            transform: translate(0px, 200px);
+        }
+        100% {
+            opacity: 1;
+            z-index: 1;
+            height: 250px;
+            transform: translate(0px, 0px);
+        }
+    }
+  </style>
+    <template>
+        <div id="animationBack">
+        </div>
+        <button id="closeBtn" type="button" class="closeBtn" on-tap="closeEdit">X</button>
+    </template>
+    <script>
+        Polymer({
+			is: 'edit-board',
+
+    		properties: {
+            },
+
+            ready: function() {
+                console.log('edit-board RDY!', this.parentNode);
+            },
+
+            attached: function() {
+                this.classList.add('elementAnimation');
+                this.$.animationBack.classList.add('elementAnimationBack');
+
+                var cbr = this.parentNode.getBoundingClientRect();
+                this.customStyle['--parent-btm-coord'] = cbr.bottom + 'px';
+                this.customStyle['--scaled-height'] = this.closest('body').scrollHeight - cbr.bottom + 'px';
+                this.updateStyles();
+            },
+
+            listeners: {
+                'animationend': 'AnimationListener'
+            },
+
+            AnimationListener: function(e) {
+                setTimeout(function() {
+                    this.$.closeBtn.style.display = "block";
+                }.bind(this), 300)
+            },
+
+            closeEdit: function() {
+                this.remove();
+            },
+
+			behaviors: []
+		});
+    </script>
+</dom-module>

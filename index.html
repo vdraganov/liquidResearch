@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Liquid</title>
+        <link rel="import" href="components/msg-card.html">
+    </head>
+    <body onload="pageLoaded()">
+        <style media="screen">
+            body {
+                margin: 0px;
+                padding: 0px;
+                color: rgb(255, 255, 255);
+                font-size: 22px;
+            }
+
+            header {
+                width: 100vw;
+                height: 150px;
+                background-color: rgb(9, 99, 193);
+            }
+
+            header span {
+                font-size: 6rem;
+                margin-left: 150px;
+                line-height: 1.5em;
+            }
+
+            nav {
+                width: 100vw;
+                height: 75px;
+                background-color: rgb(26, 49, 129);
+            }
+
+            nav span {
+                font-size: 3rem;
+                margin-left: 25px;
+                line-height: 1.5em;
+            }
+
+            section {
+                width: 100vw;
+                height: calc(100vh - 150px);
+                background-color: rgb(179, 29, 78);
+                display: flex;
+                flex-direction: column;
+            }
+        </style>
+        <header>
+            <span>Subject List</span>
+        </header>
+        <nav>
+            <span>New Subject</span>
+        </nav>
+        <section>
+            <msg-card>
+                <div class="">Dave Johnson</div>
+            </msg-card>
+            <msg-card>
+                <div class="">Dave Johnson</div>
+            </msg-card>
+            <msg-card>
+                <div class="">Dave Johnson</div>
+            </msg-card>
+            <msg-card>
+                <div class="">Dave Johnson</div>
+            </msg-card>
+            <msg-card>
+                <div class="">Dave Johnson</div>
+            </msg-card>
+            <msg-card>
+                <div class="">Dave Johnson</div>
+            </msg-card>
+        </section>
+
+    </body>
+    <script type="text/javascript">
+        function pageLoaded() {
+        }
+
+    </script>
+</html>

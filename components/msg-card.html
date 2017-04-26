@@ -1,0 +1,64 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="./edit-board.html">
+
+<dom-module id="msg-card">
+  <style>
+    :host {
+        width: 100vw;
+        height: 250px;
+        margin: 1px 0;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        background-color: rgb(237, 201, 43);
+        font-size: 2rem;
+    }
+    :host::content > div {
+        /*background-color: rgb(72, 194, 124);*/
+        font-size: 1.2em;
+        width: 50vw;
+        height: 100%;
+        flex-direction: column;
+        align-items: center;
+    }
+    :host .img-placeholder {
+        margin: auto 60px;
+        width: 125px;
+        height: 125px;
+        border: 5px solid #fff;
+        border-radius: 50%;
+    }
+    :host button {
+        font-size: 2.5rem;
+        margin: auto 60px;
+        width: 125px;
+        height: 125px;
+        border: 5px solid #fff;
+        border-radius: 50%;
+    }
+  </style>
+    <template>
+        <div class="img-placeholder">
+
+        </div>
+        <content></content>
+        <button type="button" on-tap="editMsg">Edit</button>
+    </template>
+    <script>
+        Polymer({
+			is: 'msg-card',
+
+    		properties: {
+            },
+
+            editMsg: function(e) {
+                var eB = document.createElement('edit-board');
+                this.append(eB);
+                console.log('editMsg');
+            },
+
+
+			behaviors: []
+		});
+    </script>
+</dom-module>
