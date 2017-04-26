@@ -1,0 +1,20 @@
+{
+  "name": "Liquid Flow research Project",
+  "homepage": "https://github.com/vdraganov/liquidResearch",
+  "authors": [
+    "Valentin Draganov <vdraganov@questarai.com>"
+  ],
+  "description": "",
+  "main": "index.html",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "^1.6.0"
+  }
+}
